@@ -1,0 +1,32 @@
+{
+  "name": "sane-domparser",
+  "version": "0.1.0",
+  "description": "Reports DOMParser parse errors as exceptions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Run 'npm run-script watchify' and open test/test.html in the browser\" && exit 1",
+    "watchify": "watchify test/sane-domparser.js -o build/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cburgmer/sane-domparser.git"
+  },
+  "keywords": [
+    "XML",
+    "parser",
+    "DOMParser",
+    "error"
+  ],
+  "author": "christoph.burgmer@gmail.com",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/cburgmer/sane-domparser/issues"
+  },
+  "homepage": "https://github.com/cburgmer/sane-domparser#readme",
+  "devDependencies": {
+    "browserify": "^11.0.1",
+    "browserify-tape-spec": "^1.1.2",
+    "tape": "^4.2.0",
+    "watchify": "^3.4.0"
+  }
+}
