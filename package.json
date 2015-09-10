@@ -4,7 +4,7 @@
   "description": "Reports DOMParser parse errors as exceptions",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Run 'npm run-script watchify' and open test/test.html in the browser\" && exit 1",
+    "test": "browserify test/sane-domparser.js | testling",
     "watchify": "watchify test/sane-domparser.js -o build/bundle.js"
   },
   "repository": {
@@ -27,6 +27,7 @@
     "browserify": "^11.0.1",
     "browserify-tape-spec": "^1.1.2",
     "tape": "^4.2.0",
+    "testling": "^1.7.1",
     "watchify": "^3.4.0"
   }
 }

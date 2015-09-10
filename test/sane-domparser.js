@@ -11,10 +11,12 @@ test('should parse valid XML successfully', function (t) {
 
 test('should throw error on invalid input', function (t) {
     t.throws(function () {
-        saneDomParser.parseFromString('What is that', 'application/xml');
+        saneDomParser.parseFromString('<xml', 'text/xml');
     }, {message: 'Invalid source'});
 
     t.end();
 });
 
-test.createStream().pipe(report('out'));
+if (navigator.userAgent.indexOf('PhantomJS') === -1) {
+    test.createStream().pipe(report('out'));
+}
