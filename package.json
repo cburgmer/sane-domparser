@@ -1,28 +1,29 @@
 {
-  "name": "sane-domparser",
+  "name": "sane-domparser-error",
   "version": "0.1.0",
-  "description": "Reports DOMParser parse errors as exceptions",
+  "description": "Provides sane parser errors for DOMParser or XHR",
   "main": "index.js",
   "scripts": {
-    "test": "browserify test/sane-domparser.js | testling",
-    "watchify": "watchify test/sane-domparser.js -o build/bundle.js"
+    "test": "browserify test/sane-domparser-error.js | testling",
+    "watchify": "watchify test/sane-domparser-error.js -o build/bundle.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cburgmer/sane-domparser.git"
+    "url": "git+https://github.com/cburgmer/sane-domparser-error.git"
   },
   "keywords": [
     "XML",
     "parser",
     "DOMParser",
+    "XHR",
     "error"
   ],
   "author": "christoph.burgmer@gmail.com",
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/cburgmer/sane-domparser/issues"
+    "url": "https://github.com/cburgmer/sane-domparser-error/issues"
   },
-  "homepage": "https://github.com/cburgmer/sane-domparser#readme",
+  "homepage": "https://github.com/cburgmer/sane-domparser-error#readme",
   "devDependencies": {
     "browserify": "^11.0.1",
     "browserify-tape-spec": "^1.1.2",
