@@ -1,4 +1,10 @@
 # sane-domparser-error
+
+<a href="https://www.npmjs.org/package/sane-domparser-error">
+    <img src="https://badge.fury.io/js/sane-domparser-error.svg"
+        align="right" alt="NPM version" height="18">
+</a>
+
 Provides sane and machine readable parser errors for DOMParser and XHR (with `XMLHttpRequest.responseType = 'document'`).
 
 ## Why?
