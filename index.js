@@ -42,10 +42,7 @@ var failOnParseError = function (doc) {
     }
 };
 
-exports.parseFromString = function (content, mimeType) {
-    var p = new DOMParser(),
-        doc = p.parseFromString(content, mimeType);
-
+exports.failOnParseError = function (doc) {
     failOnParseError(doc);
 
     return doc;
