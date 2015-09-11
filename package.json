@@ -1,7 +1,7 @@
 {
   "name": "sane-domparser-error",
   "version": "0.1.0",
-  "description": "Provides sane parser errors for DOMParser or XHR",
+  "description": "Provides sane parser errors for DOMParser and XHR",
   "main": "index.js",
   "scripts": {
     "test": "browserify test/sane-domparser-error.js | testling",

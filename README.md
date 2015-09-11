@@ -8,7 +8,14 @@ DOMParser and XHR currently do not throw an exception if a document could not be
 Instead of
 
 ```xml
-<parsererror xmlns="http://www.mozilla.org/newlayout/xml/parsererror.xml">XML Parsing Error: prefix not bound to a namespace\n Location: file:////tmp/index.html\n Line Number 1, Column 57:<sourcetext>&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&lt;head/&gt;&lt;body&gt;&lt;namespace:customtag&gt;&lt;!-- namespace:customtag--&gt;&lt;/namespace:customtag&gt;&lt;/body&gt;&lt;/html&gt;\n --------------------------------------------------------^</sourcetext></parsererror>
+<parsererror xmlns="http://www.mozilla.org/newlayout/xml/parsererror.xml">
+  XML Parsing Error: prefix not bound to a namespace\n Location: file:////tmp/index.html
+  Line Number 1, Column 57:
+  <sourcetext>
+    &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&lt;head/&gt;&lt;body&gt;&lt;namespace:customtag&gt;&lt;!-- namespace:customtag--&gt;&lt;/namespace:customtag&gt;&lt;/body&gt;&lt;/html&gt;
+    --------------------------------------------------------^
+  </sourcetext>
+</parsererror>
 ```
 
 you'll receive
