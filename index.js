@@ -15,7 +15,7 @@ var getParseError = function (doc) {
     }
 
     // Chrome, Safari
-    if (doc.documentElement.tagName === 'xml' &&
+    if ((doc.documentElement.tagName === 'xml' || doc.documentElement.tagName === 'html') &&
         doc.documentElement.childNodes &&
         doc.documentElement.childNodes.length > 0 &&
         doc.documentElement.childNodes[0].nodeName === 'parsererror') {
@@ -38,7 +38,7 @@ var getParseError = function (doc) {
 
 var errorMessagePatterns = [
     // Chrome, Safari, PhantomJS
-    new RegExp('^<h3[^>]*>This page contains the following errors:<\/h3><div[^>]*>(.+)<\/div>'),
+    new RegExp('^<h3[^>]*>This page contains the following errors:<\/h3><div[^>]*>(.+?)\n?<\/div>'),
     // Firefox
     new RegExp('^(.+)\n')
 ];
