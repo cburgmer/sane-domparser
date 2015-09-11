@@ -1,29 +1,58 @@
-var getParseError = function (parsedDocument) {
-    // http://stackoverflow.com/questions/11563554/how-do-i-detect-xml-parsing-errors-when-using-javascripts-domparser-in-a-cross
-    var p = new DOMParser(),
-        errorneousParse = p.parseFromString('<', 'text/xml'),
-        parsererrorNS = errorneousParse.getElementsByTagName("parsererror")[0].namespaceURI,
-        parseerrorMatches;
+'use strict';
 
-    if (parsererrorNS === 'http://www.w3.org/1999/xhtml') {
-        // In PhantomJS the parseerror element doesn't seem to have a special namespace, so we are just guessing here :(
-        parseerrorMatches = parsedDocument.getElementsByTagName("parsererror");
-    } else {
-        parseerrorMatches = parsedDocument.getElementsByTagNameNS(parsererrorNS, 'parsererror');
+var innerXML = function (node) {
+    var s = new XMLSerializer();
+    return Array.prototype.map.call(node.childNodes, function (node) {
+        return s.serializeToString(node);
+    }).join('');
+};
+
+var getParseError = function (doc) {
+    // Firefox
+    if (doc.documentElement.tagName === 'parsererror' &&
+        doc.documentElement.namespaceURI === 'http://www.mozilla.org/newlayout/xml/parsererror.xml') {
+        return doc.documentElement;
     }
 
-    if (parseerrorMatches.length > 0) {
-        return parseerrorMatches[0].textContent;
+    // Chrome, Safari
+    if (doc.documentElement.tagName === 'xml' &&
+        doc.documentElement.childNodes &&
+        doc.documentElement.childNodes.length > 0 &&
+        doc.documentElement.childNodes[0].nodeName === 'parsererror') {
+        return doc.documentElement.childNodes[0];
+    }
+
+    // PhantomJS
+    if (doc.documentElement.tagName === 'html' &&
+        doc.documentElement.childNodes &&
+        doc.documentElement.childNodes.length > 0 &&
+        doc.documentElement.childNodes[0].nodeName === 'body' &&
+        doc.documentElement.childNodes[0].childNodes &&
+        doc.documentElement.childNodes[0].childNodes.length &&
+        doc.documentElement.childNodes[0].childNodes[0].nodeName === 'parsererror') {
+        return doc.documentElement.childNodes[0].childNodes[0];
     }
 
     return undefined;
 };
 
-var extractParseError = function (content) {
-    var match = /(.+)\n/.exec(content);
+var errorMessagePatterns = [
+    // Chrome, Safari, PhantomJS
+    new RegExp('^<h3[^>]*>This page contains the following errors:<\/h3><div[^>]*>(.+)<\/div>'),
+    // Firefox
+    new RegExp('^(.+)\n')
+];
 
-    if (match) {
-        return match[1];
+var extractParseError = function (errorNode) {
+    var content = innerXML(errorNode);
+    var i, match;
+
+    for(i = 0; i < errorMessagePatterns.length; i++) {
+        match = errorMessagePatterns[i].exec(content);
+
+        if (match) {
+            return match[1];
+        }
     }
     return undefined;
 };
