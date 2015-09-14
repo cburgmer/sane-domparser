@@ -74,6 +74,6 @@ if (navigator.userAgent.indexOf('PhantomJS') === -1) {
 }
 
 
-if (navigator.userAgent.indexOf('PhantomJS') === -1) {
+if (document.querySelector('#out')) {
     test.createStream().pipe(report('out'));
 }
