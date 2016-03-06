@@ -30,6 +30,33 @@ you'll receive
 new Error('XML Parsing Error: prefix not bound to a namespace');
 ```
 
+## Usage
+
+```js
+var saneError = require('sane-domparser-error');
+
+var xhr = new XMLHttpRequest();
+xhr.onload = function() {
+  saneError.failOnParseError(xhr.responseXML);
+  // ... the happy path from here ...
+}
+xhr.open("GET", "file.html");
+xhr.responseType = "document";
+xhr.send();
+```
+
+and
+
+``` js
+var saneError = require('sane-domparser-error');
+
+var p = new DOMParser(),
+    doc = p.parseFromString(xhtml, "application/xml");
+
+saneError.failOnParseError(doc);
+// ... the happy path from here ...
+```
+
 ## Develop
 
     $ npm run-script watchify
