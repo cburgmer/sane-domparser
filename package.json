@@ -29,6 +29,6 @@
     "browserify-tape-spec": "^1.1.2",
     "tape": "^4.2.0",
     "testling": "^1.7.1",
-    "watchify": "^3.4.0"
+    "watchify": "^3.11.0"
   }
 }
