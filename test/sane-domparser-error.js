@@ -1,5 +1,4 @@
-var test = require('tape'),
-    report = require('browserify-tape-spec');
+var test = require('tape');
 
 var saneDomParserError = require('../index.js');
 
@@ -71,9 +70,4 @@ if (navigator.userAgent.indexOf('PhantomJS') === -1) {
 
         t.end();
     });
-}
-
-
-if (document.querySelector('#out')) {
-    test.createStream().pipe(report('out'));
 }
